@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "TestFunctionWrapper.h"
+#include <stdcol>
 
 constexpr char flog_name[] = "Test Results.log";
 
@@ -21,6 +22,21 @@ TesterFunction tests[] = {
 		[](TesterFunction& this_test) {
 			this_test.result = true;
 			throw std::exception("Exception that should be caught, and logged.");
+			return test_pass;
+		}
+	},
+	{
+		"[Compile] index",
+		[](TesterFunction& this_test) {
+			using stdcol::index;
+			using stdcol::findex;
+
+			findex fi = (findex::int_type)index(32);
+			for (index i = 0; i < 10; i++, fi = i * 2 + 1);
+
+			fi = findex();
+			fail_if(fi.found());
+
 			return test_pass;
 		}
 	}
