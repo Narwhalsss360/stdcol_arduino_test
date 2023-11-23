@@ -1,22 +1,23 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "TestFunctionWrapper.h"
 
-using std::cout;
-using std::cin;
+constexpr char flog_name[] = "Test Results.log";
 
-constexpr char results_file_name[] = "Test Results.log";
+std::ofstream flog = std::ofstream(flog_name);
+std::stringstream tlog;
 
 TesterFunction tests[] = {
 	{
-		"TesterFunction Test",
+		"[Runtime] TesterFunction Test",
 		[](TesterFunction& this_test) {
-			cout << this_test << " Ran test for TesterFunction!" << '\n';
+			tlog << this_test << " Ran test for TesterFunction!" << '\n';
 			return test_pass;
 		}
 	},
 	{
-		"TesterFunction exception catcher test",
+		"[Runtime] TesterFunction exception catcher test",
 		[](TesterFunction& this_test) {
 			this_test.result = true;
 			throw std::exception("Exception that should be caught, and logged.");
@@ -26,19 +27,19 @@ TesterFunction tests[] = {
 };
 
 int main() {
-	using std::ofstream;
+	using std::cout;
+	using std::cin;
 	using std::exception;
-
-	ofstream f = ofstream(results_file_name);
-	f << "Text";
-	f.close();
 
 	for (TesterFunction& test : tests) {
 		try {
-			cout << "Running test " << test.name << ": " << resulString[test()] << '\n';
+			tlog << "Running test " << test.name << ": " << resulString[test()] << '\n';
 		} catch (std::exception e) {
-			cout << "An exception was thrown in test " << test.name << ", " << e.what() << '\n';
+			tlog << "An exception was thrown in test " << test.name << ", " << e.what() << '\n';
 		}
+		cout << tlog.str();
+		flog << tlog.str();
+		tlog.str("");
 	}
 
 	cout << "Press enter to exit...\n";
