@@ -148,6 +148,11 @@
   <ItemGroup>
     <ClInclude Include="TestFunctionWrapper.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Update="C:\Source\Repositories\Narwhalsss360\stdcol\include\enumerables">
+      <FileType>Document</FileType>
+    </ClInclude>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

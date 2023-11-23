@@ -26,4 +26,7 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\stdcol_index.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\enumerables" />
+  </ItemGroup>
 </Project>

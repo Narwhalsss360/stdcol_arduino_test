@@ -41,7 +41,7 @@ TesterFunction tests[] = {
 		}
 	},
 	{
-		"[Compile | Runtime] general_iterator, iterable, iterate",
+		"[Compile | Runtime] HEADER: iterables",
 		[](TesterFunction& this_test) {
 			using stdcol::general_iterator;
 			using stdcol::iterable;
@@ -76,6 +76,46 @@ TesterFunction tests[] = {
 				tlog << '\n';
 			}
 
+			return test_pass;
+		}
+	},
+	{
+		"[Compile | Runtime] Header: enumerables",
+		[](TesterFunction& this_test) {
+			using stdcol::general_iterator;
+			using stdcol::iterate;
+			using stdcol::enumerator;
+			using stdcol::enumerable;
+			using stdcol::enumerate;
+
+			{
+				tlog << "Using enumerator... ";
+				for (
+					auto fname_begin = enumerator<general_iterator<const char*, const char&>, const char&>(general_iterator<const char*, const char&>(flog_name, 0), 0),
+					fname_end = enumerator<general_iterator<const char*, const char&>, const char&>(general_iterator<const char*, const char&>(flog_name, sizeof(flog_name)), sizeof(flog_name));
+					fname_begin != fname_end;
+					++fname_begin) {
+						tlog << '(' << (*fname_begin).index << ", " << *fname_begin << ") ";
+					}
+					tlog << '\n';
+			}
+
+			{
+				tlog << "Using enumerable... ";
+				auto fname_enum = iterate(enumerable<const char*, const char&>((const char*)flog_name, flog_name + sizeof(flog_name)));
+				for (auto e : fname_enum) {
+					tlog << '(' << e.index << ", " << e << ") ";
+				}
+				tlog << '\n';
+			}
+
+			{
+				tlog << "Using enumerate(T (&)[size])... ";
+				for (auto e : iterate(enumerate(flog_name))) {
+					tlog << '(' << e.index << ", " << e << ") ";
+				}
+				tlog << '\n';
+			}
 			return test_pass;
 		}
 	}

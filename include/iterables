@@ -51,7 +51,7 @@ namespace stdcol {
         return iterable<iterator_t>(begin, end);
     }
 
-    template <typename array_t, size_t size>
+    template <typename array_t, index::int_type size>
     iterable<array_t*> iterate(array_t (&array)[size]) {
         return iterable<array_t*>(array, array + size);
     }

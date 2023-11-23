@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "enumerables": "cpp",
         "iterables": "cpp",
         "stdcol": "cpp",
         "stdcol_index": "cpp"

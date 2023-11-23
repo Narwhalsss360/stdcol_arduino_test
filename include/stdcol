@@ -3,5 +3,6 @@
 
 #include "stdcol_index"
 #include "iterables"
+#include "enumerables"
 
 #endif

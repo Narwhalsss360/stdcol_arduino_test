@@ -24,4 +24,9 @@
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\enumerables">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
