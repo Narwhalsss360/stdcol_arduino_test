@@ -1,0 +1,6 @@
+#ifndef header_stdcol
+#define header_stdcol
+
+#include "stdcol_index"
+
+#endif
