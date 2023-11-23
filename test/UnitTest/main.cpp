@@ -39,6 +39,45 @@ TesterFunction tests[] = {
 
 			return test_pass;
 		}
+	},
+	{
+		"[Compile | Runtime] general_iterator, iterable, iterate",
+		[](TesterFunction& this_test) {
+			using stdcol::general_iterator;
+			using stdcol::iterable;
+			using stdcol::iterate;
+
+			{
+				tlog << "Using general_iterator... ";
+				for (
+					auto fname_begin = general_iterator<const char*, const char&>(flog_name, 0),
+					fname_end = general_iterator<const char*, const char&>(flog_name, sizeof(flog_name));
+					fname_begin != fname_end;
+					++fname_begin) {
+						tlog << *fname_begin;
+					}
+					tlog << '\n';
+			}
+
+			{
+				tlog << "Using iterable... ";
+				auto fname_iter = iterable<const char*>((const char*)flog_name, flog_name + sizeof(flog_name));
+				for (const char& c : fname_iter) {
+					tlog << c;
+				}
+				tlog << '\n';
+			}
+
+			{
+				tlog << "Using iterate(T (&)[size])... ";
+				for (const char& c : iterate(flog_name)) {
+					tlog << c;
+				}
+				tlog << '\n';
+			}
+
+			return test_pass;
+		}
 	}
 };
 

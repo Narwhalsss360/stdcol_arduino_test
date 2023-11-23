@@ -8,4 +8,20 @@
       <UniqueIdentifier>{26b29f9f-5142-4896-b754-5c5491dfc535}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)include\iterables">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol_index">
+      <Filter>include</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\stdcol_index.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

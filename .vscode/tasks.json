@@ -37,7 +37,8 @@
 				"/Fd${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\",
 				"/Fe${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\UnitTest.exe",
 				"/I${workspaceFolder}\\include\\",
-				"${workspaceFolder}\\test\\UnitTest\\main.cpp"
+				"${workspaceFolder}\\test\\UnitTest\\main.cpp",
+				"${workspaceFolder}\\src\\stdcol_index.cpp"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}\\test\\UnitTest"
