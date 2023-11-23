@@ -1,0 +1,3 @@
+clean:
+	del /f /q test\UnitTest\*.log
+	rmdir /s /q test\UnitTest\x64

@@ -1,0 +1,71 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Ensure Build Dir",
+			"windows": {
+				"command": "New-Item",
+				"args": [
+					"-ItemType",
+					"Directory",
+					"-Force",
+					"-Path",
+					"\"${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\Intermediate\"",
+					"-ErrorAction",
+					"SilentlyContinue"
+				],
+				"options": {
+					"cwd": "${workspaceFolder}",
+					"statusbar": {
+						"hide": false
+					}
+				}
+			},
+			"group": "none",
+			"detail": "Ensure directories exist for build"
+		},
+		{
+			"type": "cppbuild",
+			"label": "UnitTest | Build",
+			"command": "cl.exe",
+			"args": [
+				"/Zi",
+				"/EHsc",
+				"/nologo",
+				"/Fo${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\Intermediate\\",
+				"/Fd${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\",
+				"/Fe${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\UnitTest.exe",
+				"/I${workspaceFolder}\\include\\",
+				"${workspaceFolder}\\test\\UnitTest\\main.cpp"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}\\test\\UnitTest"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: cl.exe",
+			"dependsOn": [
+				"Ensure Build Dir"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "UnitTest | Clean",
+			"command": "make",
+			"args": [
+				"clean"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"group": "none",
+			"detail": "clean: make"
+		}
+	]
+}
