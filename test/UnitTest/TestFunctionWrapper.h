@@ -6,7 +6,7 @@
 #define test_fail false
 #define test_pass true
 
-#define fail_if(expr) if (!(expr)) return test_fail
+#define fail_if(expr) if (expr) return test_fail
 #define fail_if_msg(expr, msg) if (!(expr)) { std::cout << msg; return test_fail; }
 
 #define pass_if(expr) if (expr) return test_pass
