@@ -49,7 +49,8 @@ int main() {
 
 	for (TesterFunction& test : tests) {
 		try {
-			tlog << "Running test " << test.name << ": " << resulString[test()] << '\n';
+			tlog << "Running test " << test.name << ":\n";
+			tlog << test << ": " << resulString[test()] << '\n';
 		} catch (std::exception e) {
 			tlog << "An exception was thrown in test " << test.name << ", " << e.what() << '\n';
 		}
