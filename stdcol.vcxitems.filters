@@ -27,6 +27,9 @@
     <None Include="$(MSBuildThisFileDirectory)include\dynamic_collection">
       <Filter>include</Filter>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)include\wrapper">
+      <Filter>include</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\stdcol_index.cpp">

@@ -5,6 +5,7 @@
 #include "iterables"
 #include "enumerables"
 #include "collection"
+#include "wrapper"
 #include "array"
 #include "dynamic_collection"
 #include "dynamic_array"

@@ -7,6 +7,7 @@
         "enumerables": "cpp",
         "iterables": "cpp",
         "stdcol": "cpp",
-        "stdcol_index": "cpp"
+        "stdcol_index": "cpp",
+        "wrapper": "cpp"
     }
 }
