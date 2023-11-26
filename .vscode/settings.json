@@ -1,16 +1,5 @@
 {
     "files.associations": {
-        "array": "cpp",
-        "collection": "cpp",
-        "dynamic_array": "cpp",
-        "dynamic_collection": "cpp",
-        "enumerables": "cpp",
-        "iterables": "cpp",
-        "queue": "cpp",
-        "stdcol": "cpp",
-        "stdcol_index": "cpp",
-        "stdcol_init_list": "cpp",
-        "wrapper": "cpp",
-        "initializer_list": "cpp"
+        "stdcol": "cpp"
     }
 }

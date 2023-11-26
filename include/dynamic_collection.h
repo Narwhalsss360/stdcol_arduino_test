@@ -1,7 +1,7 @@
-#ifndef stdcol_dynamic_collection
-#define stdcol_dynamic_collection
+#ifndef dynamic_collection_h
+#define dynamic_collection_h
 
-#include "collection"
+#include "collection.h"
 
 namespace stdcol {
     template <typename collectable_t>

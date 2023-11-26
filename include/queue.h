@@ -1,7 +1,7 @@
-#ifndef stdcol_queue
-#define stdcol_queue
+#ifndef queue_h
+#define queue_h
 
-#include "dynamic_array"
+#include "dynamic_array.h"
 
 namespace stdcol {
     template <typename collectable_t>

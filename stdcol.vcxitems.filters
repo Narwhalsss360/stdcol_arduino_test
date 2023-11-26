@@ -9,31 +9,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)include\iterables">
+    <None Include="$(MSBuildThisFileDirectory)include\iterables.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol_index.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\array.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\dynamic_array.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\dynamic_collection.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\wrapper.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\queue.h">
+      <Filter>include</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol_init_list.h">
       <Filter>include</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)include\stdcol">
-      <Filter>include</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)include\stdcol_index">
-      <Filter>include</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)include\array">
-      <Filter>include</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)include\dynamic_array">
-      <Filter>include</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)include\dynamic_collection">
-      <Filter>include</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)include\wrapper">
-      <Filter>include</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)include\queue">
-      <Filter>include</Filter>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)include\stdcol_init_list">
       <Filter>include</Filter>
     </None>
   </ItemGroup>
@@ -43,10 +46,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)include\enumerables">
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\enumerables.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)include\collection">
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\collection.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

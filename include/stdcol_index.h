@@ -1,5 +1,5 @@
-#ifndef stdcol_index
-#define stdcol_index
+#ifndef stdcol_index_h
+#define stdcol_index_h
 
 #include <stdint.h>
 

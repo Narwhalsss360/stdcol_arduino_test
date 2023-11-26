@@ -1,5 +1,5 @@
-#ifndef stdcol_init_list
-#define stdcol_init_list
+#ifndef stdcol_init_list_h
+#define stdcol_init_list_h
 
 #ifdef __has_include
 #if !__has_include(<initializer_list>)
@@ -41,7 +41,7 @@ namespace std {
 }
 #endif
 
-#include "enumerables"
+#include "enumerables.h"
 
 namespace stdcol {
     template <typename collectable_t>

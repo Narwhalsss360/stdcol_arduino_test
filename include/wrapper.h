@@ -1,7 +1,7 @@
-#ifndef stdcol_wrapper
-#define stdcol_wrapper
+#ifndef wrapper_h
+#define wrapper_h
 
-#include "collection"
+#include "collection.h"
 
 namespace stdcol {
     template <typename subscriptable_t, typename collectable_t>

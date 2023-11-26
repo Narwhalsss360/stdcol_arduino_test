@@ -1,9 +1,9 @@
-#ifndef stdcol_collection
-#define stdcol_collection
+#ifndef collection_h
+#define collection_h
 
-#include "stdcol_index"
-#include "iterables"
-#include "enumerables"
+#include "stdcol_index.h"
+#include "iterables.h"
+#include "enumerables.h"
 
 namespace stdcol {
     template <typename collectable_t>

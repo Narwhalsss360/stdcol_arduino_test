@@ -1,8 +1,8 @@
-#ifndef stdcol_array
-#define stdcol_array
+#ifndef array_h
+#define array_h
 
-#include "collection"
-#include "stdcol_init_list"
+#include "collection.h"
+#include "stdcol_init_list.h"
 
 namespace stdcol {
     template <typename collectable_t, index::int_type static_size>

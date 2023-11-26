@@ -1,4 +1,4 @@
-#include <stdcol_index>
+#include <stdcol_index.h>
 
 using namespace stdcol;
 

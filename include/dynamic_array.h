@@ -1,8 +1,8 @@
-#ifndef stdcol_dynamic_array
-#define stdcol_dynamic_array
+#ifndef dynamic_array_h
+#define dynamic_array_h
 
-#include "dynamic_collection"
-#include "stdcol_init_list"
+#include "dynamic_collection.h"
+#include "stdcol_init_list.h"
 
 namespace stdcol {
     template <typename collectable_t>

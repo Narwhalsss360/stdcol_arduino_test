@@ -1,7 +1,7 @@
-#ifndef stdcol_iterables
-#define stdcol_iterables
+#ifndef iterables_h
+#define iterables_h
 
-#include "stdcol_index"
+#include "stdcol_index.h"
 
 namespace stdcol {
     template <typename subscriptable_t, typename dereference_t>

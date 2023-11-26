@@ -14,26 +14,27 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)include\array" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)include\collection" />
-    <None Include="$(MSBuildThisFileDirectory)include\dynamic_array" />
-    <None Include="$(MSBuildThisFileDirectory)include\dynamic_collection" />
-    <None Include="$(MSBuildThisFileDirectory)include\iterables" />
-    <None Include="$(MSBuildThisFileDirectory)include\queue" />
-    <None Include="$(MSBuildThisFileDirectory)include\stdcol">
+    <None Include="$(MSBuildThisFileDirectory)include\array.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\collection.h" />
+    <None Include="$(MSBuildThisFileDirectory)include\dynamic_array.h" />
+    <None Include="$(MSBuildThisFileDirectory)include\dynamic_collection.h" />
+    <None Include="$(MSBuildThisFileDirectory)include\iterables.h" />
+    <None Include="$(MSBuildThisFileDirectory)include\queue.h" />
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol" />
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)include\stdcol_index" />
-    <None Include="$(MSBuildThisFileDirectory)include\stdcol_init_list" />
-    <None Include="$(MSBuildThisFileDirectory)include\wrapper" />
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol_index.h" />
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol_init_list.h" />
+    <None Include="$(MSBuildThisFileDirectory)include\wrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\stdcol_index.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)include\enumerables" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\enumerables.h" />
   </ItemGroup>
 </Project>

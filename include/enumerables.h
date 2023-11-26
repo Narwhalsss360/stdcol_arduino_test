@@ -1,7 +1,7 @@
-#ifndef stdcol_enumerables
-#define stdcol_enumerables
+#ifndef enumerables_h
+#define enumerables_h
 
-#include "iterables"
+#include "iterables.h"
 
 namespace stdcol {
     template <typename value_t>
