@@ -4,6 +4,7 @@
 #include "stdcol_index"
 #include "iterables"
 #include "enumerables"
+#include "stdcol_init_list"
 #include "collection"
 #include "wrapper"
 #include "array"

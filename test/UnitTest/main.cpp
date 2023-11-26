@@ -189,6 +189,46 @@ TesterFunction tests[] = {
 			tlog << "Capacity: " << pairs.capacity() << '\n';
 			return test_pass;
 		}
+	},
+	{
+		"[Compile] init_list",
+		[](TesterFunction& this_test) {
+			using stdcol::enumerate;
+			using stdcol::initializer_list;
+			using stdcol::array;
+			using stdcol::dynamic_array;
+
+			initializer_list<int> il = { 1, 2, 3 };
+
+			tlog << "Init list: ";
+			for (auto e : enumerate(il)) {
+				tlog << '[' << e.index << "]:" << e << ' ';
+			}
+			tlog << '\n';
+
+			array<int, 3> ints =  { 4, 5, 6 };
+
+			ints = { 7, 8, 9 };
+
+			auto f = [](double x) { return (x * x * x) - 2.5 * x; };
+
+			dynamic_array<array<double, 2>> pairs = {
+				{ 0, f(0) },
+				{ 1, f(1) },
+				{ 2, f(2) },
+				{ 3, f(3) },
+				{ 4, f(4) }
+			};
+
+			constexpr double extra = 4.3;
+			constexpr double step = 0.5;
+
+			const double end = pairs[pairs.size() - 1][0] + extra;
+			for (double x = pairs[pairs.size() - 1][0]; x <= end; x += step) {
+				pairs.insert(pairs.size(), { x, f(x) });
+			}
+			return test_pass;
+		}
 	}
 };
 

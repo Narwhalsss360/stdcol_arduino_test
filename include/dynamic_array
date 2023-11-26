@@ -2,12 +2,17 @@
 #define stdcol_dynamic_array
 
 #include "dynamic_collection"
+#include "stdcol_init_list"
 
 namespace stdcol {
     template <typename collectable_t>
     class dynamic_array : public dynamic_collection<collectable_t> {
     public:
         dynamic_array() : block(nullptr), block_size(0), block_capacity(0) {}
+
+        dynamic_array(const initializer_list<collectable_t>& init_list) : dynamic_array<collectable_t>() {
+            *this = init_list;
+        }
 
         collectable_t* const at(index index) override {
             return block + index;
@@ -103,6 +108,15 @@ namespace stdcol {
 
             block_size--;
             return true;
+        }
+
+        dynamic_array<collectable_t>& operator=(const initializer_list<collectable_t>& init_list) {
+            for (const auto& item : init_list) {
+                if (!insert(size(), item)) {
+                    break;
+                }
+            }
+            return *this;
         }
 
         ~dynamic_array() {

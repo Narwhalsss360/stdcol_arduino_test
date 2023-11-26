@@ -27,6 +27,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </None>
     <None Include="$(MSBuildThisFileDirectory)include\stdcol_index" />
+    <None Include="$(MSBuildThisFileDirectory)include\stdcol_init_list" />
     <None Include="$(MSBuildThisFileDirectory)include\wrapper" />
   </ItemGroup>
   <ItemGroup>
