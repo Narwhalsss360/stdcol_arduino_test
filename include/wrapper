@@ -18,7 +18,7 @@ namespace stdcol {
         }
 
         index size() const override {
-            return size;
+            return ssize;
         }
 
         subscriptable_t& subscriptable;
