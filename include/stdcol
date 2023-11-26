@@ -6,5 +6,7 @@
 #include "enumerables"
 #include "collection"
 #include "array"
+#include "dynamic_collection"
+#include "dynamic_array"
 
 #endif

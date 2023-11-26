@@ -150,6 +150,45 @@ TesterFunction tests[] = {
 
 			return test_pass;
 		}
+	},
+	{
+		"[Compile | Runtime] dynamic_array & dynamic_collection",
+		[](TesterFunction& this_test) {
+			using stdcol::array;
+			using stdcol::collection;
+			using stdcol::dynamic_collection;
+			using stdcol::dynamic_array;
+			using stdcol::enumerate;
+
+			dynamic_array<array<double, 2>> pairsArray;
+			dynamic_collection<array<double, 2>>& pairs = pairsArray;
+
+			auto f = [](double x) { return (x * x * x) - 2.5 * x; };
+
+			constexpr double
+				x_start = -3,
+				x_step = 1,
+				x_stop = 3;
+
+			for (double x = x_start; x <= x_stop; x += x_step) {
+				array<double, 2> pair;
+				pair[0] = x;
+				pair[1] = f(x);
+				pairs.insert(pairs.size(), pair);
+			}
+
+			tlog << '[';
+			for (auto e : enumerate(pairs)) {
+				tlog << '[' << e.index << "]: (" << e.value[0] << ", " << e.value[1] << ')';
+				if (e.index != pairs.size() - 1) {
+					tlog << ", ";
+				}
+			}
+			tlog << "]\n";
+			pairs.resize(0);
+			tlog << "Capacity: " << pairs.capacity() << '\n';
+			return test_pass;
+		}
 	}
 };
 
