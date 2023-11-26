@@ -7,7 +7,7 @@ namespace stdcol {
     template <typename subscriptable_t, typename dereference_t>
     class general_iterator {
     public:
-        general_iterator(const subscriptable_t& subscriptable, index index) : subscriptable(subscriptable), index(index) {}
+        general_iterator(subscriptable_t& subscriptable, index index) : subscriptable(subscriptable), index(index) {}
 
         bool operator!=(const general_iterator<subscriptable_t, dereference_t>& other) const {
             return index != other.index;
@@ -28,7 +28,7 @@ namespace stdcol {
         }
 
     protected:
-        const subscriptable_t& subscriptable;
+        subscriptable_t& subscriptable;
 
         index index;
     };

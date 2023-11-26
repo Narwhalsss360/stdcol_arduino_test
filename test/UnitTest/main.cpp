@@ -50,8 +50,8 @@ TesterFunction tests[] = {
 			{
 				tlog << "Using general_iterator... ";
 				for (
-					auto fname_begin = general_iterator<const char*, const char&>(flog_name, 0),
-					fname_end = general_iterator<const char*, const char&>(flog_name, sizeof(flog_name));
+					auto fname_begin = general_iterator<const char[sizeof(flog_name)], const char&>(::flog_name, 0),
+					fname_end = general_iterator<const char[sizeof(flog_name)], const char&>(flog_name, sizeof(flog_name));
 					fname_begin != fname_end;
 					++fname_begin) {
 						tlog << *fname_begin;
@@ -91,8 +91,8 @@ TesterFunction tests[] = {
 			{
 				tlog << "Using enumerator... ";
 				for (
-					auto fname_begin = enumerator<general_iterator<const char*, const char&>, const char&>(general_iterator<const char*, const char&>(flog_name, 0), 0),
-					fname_end = enumerator<general_iterator<const char*, const char&>, const char&>(general_iterator<const char*, const char&>(flog_name, sizeof(flog_name)), sizeof(flog_name));
+					auto fname_begin = enumerator<general_iterator<const char[sizeof(flog_name)], const char&>, const char&>(general_iterator<const char[sizeof(flog_name)], const char&>(flog_name, 0), 0),
+					fname_end = enumerator<general_iterator<const char[sizeof(flog_name)], const char&>, const char&>(general_iterator<const char[sizeof(flog_name)], const char&>(flog_name, sizeof(flog_name)), sizeof(flog_name));
 					fname_begin != fname_end;
 					++fname_begin) {
 						tlog << '(' << (*fname_begin).index << ", " << *fname_begin << ") ";
