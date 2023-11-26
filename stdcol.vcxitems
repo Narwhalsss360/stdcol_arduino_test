@@ -14,6 +14,8 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)include\array" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\collection" />
     <None Include="$(MSBuildThisFileDirectory)include\iterables" />
     <None Include="$(MSBuildThisFileDirectory)include\stdcol">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>

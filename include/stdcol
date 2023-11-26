@@ -4,5 +4,7 @@
 #include "stdcol_index"
 #include "iterables"
 #include "enumerables"
+#include "collection"
+#include "array"
 
 #endif

@@ -18,6 +18,9 @@
     <None Include="$(MSBuildThisFileDirectory)include\stdcol_index">
       <Filter>include</Filter>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)include\array">
+      <Filter>include</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\stdcol_index.cpp">
@@ -26,6 +29,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\enumerables">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\collection">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

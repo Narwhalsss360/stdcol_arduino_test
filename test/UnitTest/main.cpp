@@ -118,6 +118,38 @@ TesterFunction tests[] = {
 			}
 			return test_pass;
 		}
+	},
+	{
+		"[Compile | Runtime] array & collection",
+		[](TesterFunction& this_test) {
+			using stdcol::collection;
+			using stdcol::array;
+			using stdcol::enumerate;
+
+			array<float, 10> numArray;
+			collection<float>& nums = numArray;
+			for (float& n : nums) {
+				n = 1.0/2.0;
+			}
+
+			tlog << "Initial: ";
+			for (auto e : enumerate(nums)) {
+				tlog << '(' << e.index << ", " << e << ") ";
+			}
+			tlog << '\n';
+
+			for (auto e : enumerate(nums)) {
+				(float&)e = e.index / 2.0;
+			}
+
+			tlog << "Index-based: ";
+			for (auto e : enumerate(nums)) {
+				tlog << '(' << e.index << ", " << e << ") ";
+			}
+			tlog << '\n';
+
+			return test_pass;
+		}
 	}
 };
 

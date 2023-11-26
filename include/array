@@ -1,0 +1,29 @@
+#ifndef stdcol_array
+#define stdcol_array
+
+#include "collection"
+
+namespace stdcol {
+    template <typename collectable_t, index::int_type static_size>
+    class array : public collection<collectable_t> {
+    public:
+        array() : static_array{ collectable_t() } {}
+
+        collectable_t* const at(index index) override {
+            return static_array + index;
+        }
+
+        const collectable_t* const at(index index) const override {
+            return static_array + index;
+        }
+
+        index size() const override {
+            return static_size;
+        }
+
+    protected:
+        collectable_t static_array[static_size];
+    };
+}
+
+#endif
