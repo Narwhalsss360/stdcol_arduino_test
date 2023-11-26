@@ -6,6 +6,7 @@
         "dynamic_collection": "cpp",
         "enumerables": "cpp",
         "iterables": "cpp",
+        "queue": "cpp",
         "stdcol": "cpp",
         "stdcol_index": "cpp",
         "wrapper": "cpp"

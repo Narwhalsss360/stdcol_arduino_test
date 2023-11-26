@@ -1,0 +1,37 @@
+#ifndef stdcol_queue
+#define stdcol_queue
+
+#include "dynamic_array"
+
+namespace stdcol {
+    template <typename collectable_t>
+    class queue : public dynamic_array<collectable_t> {
+    public:
+        bool enqueue(const collectable_t& item) {
+            return insert(size(), item);
+        }
+
+        bool operator+=(const collectable_t& item) {
+            return enqueue(item);
+        }
+
+        bool dequeue(collectable_t* const out) {
+            if (size() == 0) {
+                return false;
+            }
+            *out = *at(0);
+            remove(0);
+            return true;
+        }
+
+        bool dequeue(collectable_t& out) {
+            return dequeue(&out);
+        }
+
+        bool operator-=(collectable_t& out) {
+            return dequeue(out);
+        }
+    };
+}
+
+#endif
