@@ -15,8 +15,6 @@
 #include <initializer_list>
 #endif
 
-#define stdcol_init_list_required
-
 #ifdef stdcol_init_list_required
 #include <stddef.h>
 
