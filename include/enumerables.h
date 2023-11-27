@@ -47,7 +47,7 @@ namespace stdcol {
     }
 
     template <typename iterator_t, typename dereference_t>
-    enumerable<iterator_t, dereference_t>& iterate(enumerable<iterator_t, dereference_t>&& enumerable) {
+    enumerable<iterator_t, dereference_t> iterate(enumerable<iterator_t, dereference_t>&& enumerable) {
         return enumerable;
     }
 
