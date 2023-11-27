@@ -26,8 +26,6 @@ namespace std {
     public:
         constexpr initializer_list() noexcept : _begin(nullptr), _size(0) {}
 
-        constexpr initializer_list(const T* _begin, const size_t _size) : _begin(_begin), _size(_size) {}
-
         constexpr const T* begin() const noexcept { return _begin; }
 
         constexpr const T* end() const noexcept { return _begin + _size; }
@@ -36,7 +34,7 @@ namespace std {
 
     private:
         const T* _begin;
-        const size_t _size;
+        size_t _size;
     };
 }
 #endif
