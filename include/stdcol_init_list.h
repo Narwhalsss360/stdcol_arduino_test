@@ -15,28 +15,28 @@
 #include <initializer_list>
 #endif
 
+#define stdcol_init_list_required
+
 #ifdef stdcol_init_list_required
+#include <stddef.h>
+
 namespace std {
-    template <typename collectable_t>
+    template <typename T>
     class initializer_list {
     public:
-        constexpr initializer_list() noexcept : first(nullptr), last(nullptr) {}
+        constexpr initializer_list() noexcept : _begin(nullptr), _size(0) {}
 
-        constexpr initializer_list(const collectable_t* first, const collectable_t* last) noexcept : first(first), last(last) {}
+        constexpr initializer_list(const T* _begin, const size_t _size) : _begin(_begin), _size(_size) {}
 
-        constexpr const collectable_t* begin() const noexcept {
-            return first;
-        }
+        constexpr const T* begin() const noexcept { return _begin; }
 
-        constexpr const collectable_t* end() const noexcept {
-            return last;
-        }
+        constexpr const T* end() const noexcept { return _begin + _size; }
 
-        constexpr size_t size() const noexcept {
-            return static_cast<size_t>(last - first);
-        }
+        constexpr const size_t size() const noexcept { return _size; }
+
     private:
-        const collectable_t* first, last;
+        const T* _begin;
+        const size_t _size;
     };
 }
 #endif
