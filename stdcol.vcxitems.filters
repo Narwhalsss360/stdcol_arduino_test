@@ -55,5 +55,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\linked.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\set.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

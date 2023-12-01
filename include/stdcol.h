@@ -11,5 +11,6 @@
 #include "dynamic_collection.h"
 #include "dynamic_array.h"
 #include "linked.h"
+#include "set.h"
 
 #endif

@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\linked.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\set.h" />
     <None Include="$(MSBuildThisFileDirectory)include\array.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\collection.h" />
     <None Include="$(MSBuildThisFileDirectory)include\dynamic_array.h" />
