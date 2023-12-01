@@ -10,5 +10,6 @@
 #include "array.h"
 #include "dynamic_collection.h"
 #include "dynamic_array.h"
+#include "linked.h"
 
 #endif

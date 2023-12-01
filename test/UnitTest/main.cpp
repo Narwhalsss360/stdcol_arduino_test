@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "TestFunctionWrapper.h"
+#include "TestObjects.h"
 #include <stdcol>
 
 constexpr char flog_name[] = "Test Results.log";
@@ -227,6 +228,68 @@ TesterFunction tests[] = {
 			for (double x = pairs[pairs.size() - 1][0]; x <= end; x += step) {
 				pairs.insert(pairs.size(), { x, f(x) });
 			}
+			return test_pass;
+		}
+	},
+	{
+		"[Compile | Runtime] linked_node",
+		[](TesterFunction& this_test) {
+			using stdcol::linked_node;
+			auto n = linked_node<NonDefaultConstructable>(nullptr, nullptr, 32, 1);
+			return test_pass;
+		}
+	},
+	{
+		"linked_list",
+		[](TesterFunction& this_test) {
+			using stdcol::index;
+			using stdcol::linked;
+			linked<int> ints;
+
+			for (int n = 1, i = 0; n <= 45; n += 2, i++) {
+				ints.emplace(i, n);
+			}
+
+			ints.emplace(2, 6);
+			ints.emplace(5, 10);
+
+			return test_pass;
+		}
+	},
+	{
+		"linked_iterator",
+		[](TesterFunction& this_test) {
+			using stdcol::index;
+			using stdcol::array;
+			using stdcol::linked;
+			using stdcol::linked_node;
+			using stdcol::linked_iterator;
+			using stdcol::initializer_list;
+			using stdcol::iterate;
+			using stdcol::enumerate;
+
+			linked<NonDefaultConstructable> items;
+
+			index i = 0;
+			for (int n = 2; n <= 1000; n += n) {
+				items.emplace(i, 2 * i, n);
+			}
+
+			for (auto& n : iterate(items)) {
+				tlog << n.a << ':' << n.b << ", ";
+			}
+
+			tlog << '\n';
+
+			index size = items.size();
+			for (auto e : enumerate(items)) {
+				tlog << '[' << e.index << "]: (" << e.value.a << ", " << e.value.b << ')';
+				if (e.index != size - 1) {
+					tlog << ", ";
+				}
+			}
+
+			tlog << '\n';
 			return test_pass;
 		}
 	}
