@@ -271,7 +271,7 @@ TesterFunction tests[] = {
 			linked<NonDefaultConstructable> items;
 
 			index i = 0;
-			for (int n = 2; n <= 1000; n += n) {
+			for (int n = 2; n <= 1000; n += n, i++) {
 				items.emplace(i, 2 * i, n);
 			}
 
