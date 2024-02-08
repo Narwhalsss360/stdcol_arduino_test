@@ -22,12 +22,26 @@
 					}
 				}
 			},
+			"linux": {
+				"command": "mkdir",
+				"args": [
+					"-p",
+					"\"${workspaceFolder}/test/UnitTest/bin\""
+				],
+				"options": {
+					"cwd": "${workspaceFolder}",
+					"statusbar": {
+						"hide": false
+					}
+				}
+			},
 			"group": "none",
-			"detail": "Ensure directories exist for build"
+			"detail": "Ensure directories exist for build",
+			"problemMatcher": []
 		},
 		{
 			"type": "cppbuild",
-			"label": "UnitTest | Build",
+			"label": "Windows | UnitTest | Build",
 			"command": "cl.exe",
 			"args": [
 				"/Zi",
@@ -51,6 +65,25 @@
 				"isDefault": true
 			},
 			"detail": "compiler: cl.exe",
+			"dependsOn": [
+				"Ensure Build Dir"
+			]
+		},
+		{
+			"type": "cppbuild",
+			"label": "Linux | UnitTest | Build",
+			"command": "g++",
+			"args": [
+				"-I \"${workspaceFolder}/include\"",
+				"\"${workspaceFolder}/src/stdcol_index.cpp\"",
+				"\"${workspaceFolder}/test/UnitTest/main.cpp\"",
+				"-o \"${workspaceFolder}/test/UnitTest/bin/unittest\"",
+				"-Wpedantic",
+				"-std=c++11"
+			],
+			"options": {
+				"cwd": "\"${workspaceFolder}/test/UnitTest\""
+			},
 			"dependsOn": [
 				"Ensure Build Dir"
 			]
