@@ -7,30 +7,30 @@ namespace stdcol {
     template <typename subscriptable_t, typename dereference_t>
     class general_iterator {
     public:
-        general_iterator(subscriptable_t& subscriptable, index index) : subscriptable(subscriptable), index(index) {}
+        general_iterator(subscriptable_t& subscriptable, index idx) : subscriptable(subscriptable), idx(idx) {}
 
         bool operator!=(const general_iterator<subscriptable_t, dereference_t>& other) const {
-            return index != other.index;
+            return idx != other.idx;
         }
 
         general_iterator<subscriptable_t, dereference_t>& operator++() {
-            ++index;
+            ++idx;
             return *this;
         }
 
         general_iterator<subscriptable_t, dereference_t>& operator++(int) {
-            ++index;
+            ++idx;
             return *this;
         }
 
         dereference_t operator*() const {
-            return subscriptable[index];
+            return subscriptable[idx];
         }
 
     protected:
         subscriptable_t& subscriptable;
 
-        index index;
+        index idx;
     };
 
     template <typename iterator_t>

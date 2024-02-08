@@ -22,7 +22,7 @@ TesterFunction tests[] = {
 		"[Runtime] TesterFunction exception catcher test",
 		[](TesterFunction& this_test) {
 			this_test.result = true;
-			throw std::exception("Exception that should be caught, and logged.");
+			throw test_exception();
 			return test_pass;
 		}
 	},
@@ -304,7 +304,7 @@ int main() {
 		try {
 			tlog << "Running test " << test.name << ":\n";
 			tlog << test << ": " << resulString[test()] << '\n';
-		} catch (std::exception e) {
+		} catch (const std::exception& e) {
 			tlog << "An exception was thrown in test " << test.name << ", " << e.what() << '\n';
 		}
 		cout << tlog.str();

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <ostream>
+#include <exception>
 
 #define test_fail false
 #define test_pass true
@@ -23,6 +24,12 @@ struct TesterFunction {
 	test_func f = nullptr;
 	bool result = false;
 
+	TesterFunction() {}
+
+	TesterFunction(std::string name, test_func f) : name(name), f(f) {
+
+	}
+
 	bool operator()() {
 		if (f) result = f(*this);
 		return result;
@@ -31,6 +38,13 @@ struct TesterFunction {
 	operator const bool() const {
 		return result;
 	}
+};
+
+class test_exception : public std::exception {
+public:
+	test_exception() : std::exception() {}
+
+	const char* what() const noexcept override { return "A thrown exception that should be caught, and logged."; }
 };
 
 std::ostream& operator<<(std::ostream& stream, const TesterFunction& test) {

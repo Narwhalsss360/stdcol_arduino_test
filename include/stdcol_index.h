@@ -2,6 +2,7 @@
 #define stdcol_index_h
 
 #include <stdint.h>
+#include <stddef.h>
 
 namespace stdcol {
     struct findex;
@@ -9,7 +10,7 @@ namespace stdcol {
     struct index {
         using int_type = size_t;
 
-        static constexpr int_type max = SIZE_MAX;
+        static constexpr const int_type max = SIZE_MAX;
 
         int_type value;
 
@@ -25,7 +26,7 @@ namespace stdcol {
     };
 
     struct findex : index {
-        static constexpr int_type not_found = max;
+        static constexpr const int_type not_found = max;
 
         findex();
 

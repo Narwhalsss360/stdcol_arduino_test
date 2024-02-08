@@ -22,20 +22,20 @@ namespace stdcol {
     template <typename iterator_t, typename dereference_t>
     class enumerator {
     public:
-        enumerator(iterator_t iterator, index index = 0) : iterator(iterator), index(index) {}
+        enumerator(iterator_t iterator, index idx = 0) : iterator(iterator), idx(idx) {}
 
         bool operator!=(const enumerator<iterator_t, dereference_t>& other) const { return iterator != other.iterator; }
 
-        void operator++() { ++index; ++iterator; }
+        void operator++() { ++idx; ++iterator; }
 
         void operator++(int) { operator++(); }
 
-        enumeration<dereference_t> operator*() const { return enumeration<dereference_t>(index, *iterator); }
+        enumeration<dereference_t> operator*() const { return enumeration<dereference_t>(idx, *iterator); }
 
     protected:
         iterator_t iterator;
 
-        index index;
+        index idx;
     };
 
     template <typename iterator_t, typename dereference_t>
