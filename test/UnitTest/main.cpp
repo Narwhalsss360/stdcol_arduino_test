@@ -161,7 +161,7 @@ TesterFunction tests[] = {
 			using stdcol::dynamic_array;
 			using stdcol::enumerate;
 
-			dynamic_array<array<double, 2>> pairsArray;
+			dynamic_array<array<double, 2>> pairsArray = dynamic_array<array<double, 2>>(5);
 			dynamic_collection<array<double, 2>>& pairs = pairsArray;
 
 			auto f = [](double x) { return (x * x * x) - 2.5 * x; };

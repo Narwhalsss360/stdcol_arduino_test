@@ -14,6 +14,10 @@ namespace stdcol {
             *this = init_list;
         }
 
+        dynamic_array(index size) : dynamic_array() {
+            reserve(size);
+        }
+
         collectable_t* const at(index index) override {
             return block + index;
         }
