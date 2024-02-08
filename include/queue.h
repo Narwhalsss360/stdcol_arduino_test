@@ -8,7 +8,7 @@ namespace stdcol {
     class queue : public dynamic_array<collectable_t> {
     public:
         bool enqueue(const collectable_t& item) {
-            return insert(size(), item);
+            return this->insert(this->size(), item);
         }
 
         bool operator+=(const collectable_t& item) {
@@ -16,10 +16,10 @@ namespace stdcol {
         }
 
         bool dequeue(collectable_t* const out) {
-            if (size() == 0) {
+            if (this->size() == 0) {
                 return false;
             }
-            *out = *at(0);
+            *out = *this->at(0);
             remove(0);
             return true;
         }

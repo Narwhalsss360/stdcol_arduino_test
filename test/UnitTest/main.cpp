@@ -292,6 +292,51 @@ TesterFunction tests[] = {
 			tlog << '\n';
 			return test_pass;
 		}
+	},
+	{
+		"set",
+		[](TesterFunction& this_test)
+		{
+			using stdcol::set;
+
+			set<unsigned int> some_naturals;
+
+			some_naturals.reserve(100);
+			for (int i = 0; i <= 100; i++)
+				some_naturals.insert(some_naturals.size(), i);
+			
+			return test_pass;
+		}
+	},
+	{
+		"queue",
+		[](TesterFunction& this_test)
+		{
+			using stdcol::queue;
+			using std::string;
+
+			queue<string> line;
+
+			for (int i = 0; i < sizeof(names) / sizeof(string); i++)
+			{
+				if (!(line += names[i]))
+					return test_fail;
+			}
+
+			return test_fail; //infinite-loop here.
+			while (line.size())
+			{
+				string name;
+				if (line -= name)
+				{
+					tlog << name << '\n';
+					continue;
+				}
+				return test_fail;
+			}
+
+			return test_pass;
+		}
 	}
 };
 

@@ -1,4 +1,14 @@
 #pragma once
+#include <string>
+
+const std::string names[] = {
+    "Spongebob",
+    "Patrick",
+    "Squidward",
+    "Gary",
+    "Sandy",
+    "Mr. Krabs"
+};
 
 //Subscriptable
 struct vector3 {
