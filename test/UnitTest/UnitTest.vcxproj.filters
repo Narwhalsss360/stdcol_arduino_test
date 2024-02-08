@@ -26,5 +26,8 @@
     <ClInclude Include="TestFunctionWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TestObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

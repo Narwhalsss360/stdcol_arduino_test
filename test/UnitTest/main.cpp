@@ -315,21 +315,23 @@ TesterFunction tests[] = {
 			using stdcol::queue;
 			using std::string;
 
-			queue<string> line;
+			const int nums[] = { 2, 4, 6, 8, 10 };
 
-			for (int i = 0; i < sizeof(names) / sizeof(string); i++)
+			queue<int> line;
+
+			for (int i = 0; i < sizeof(nums) / sizeof(int); i++)
 			{
-				if (!(line += names[i]))
+				if (!(line += nums[i]))
 					return test_fail;
 			}
 
-			return test_fail; //infinite-loop here.
+			//return test_fail; //infinite-loop here.
 			while (line.size())
 			{
-				string name;
-				if (line -= name)
+				int num;
+				if (line -= num)
 				{
-					tlog << name << '\n';
+					tlog << num << '\n';
 					continue;
 				}
 				return test_fail;
