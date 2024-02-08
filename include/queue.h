@@ -20,7 +20,7 @@ namespace stdcol {
                 return false;
             }
             *out = *this->at(0);
-            remove(0);
+            this->remove(0);
             return true;
         }
 
