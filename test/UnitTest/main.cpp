@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <xhash>
 #include "TestFunctionWrapper.h"
 #include "TestObjects.h"
 #include <stdcol>
