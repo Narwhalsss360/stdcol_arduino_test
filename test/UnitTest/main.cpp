@@ -365,6 +365,10 @@ TesterFunction tests[] = {
 				return test_fail;
 			}
 
+            for (int x = 10; x <= 20; x++) {
+                fsamples[x] = f(x);
+            }
+
 			dictionary<int, int>::buckets_t buckets = fsamples.buckets();
 
 			for (dictionary<int, int>::bucket_t& bucket : buckets) {
