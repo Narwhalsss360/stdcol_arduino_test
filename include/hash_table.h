@@ -7,14 +7,14 @@ namespace stdcol {
     template <typename hashable_t, typename collectable_t, typename hasher_t = hasher<hashable_t>>
     class hash_table : public dictionary<hashable_t, collectable_t> {
     public:
-        using dictionary = dictionary<hashable_t, collectable_t>;
+        using dict = dictionary<hashable_t, collectable_t>;
 
-        hash_table() : table_buckets(dictionary::buckets_t(11)), key_hasher(hasher_t()) {}
+        hash_table() : table_buckets(typename dict::buckets_t(11)), key_hasher(hasher_t()) {}
 
-        hash_table(index size) : table_buckets(dictionary::buckets_t(size)), key_hasher(hasher_t()) {}
+        hash_table(index size) : table_buckets(dict::buckets_t(size)), key_hasher(hasher_t()) {}
 
         bool contains(const hashable_t& key) override {
-            for (const dictionary::kvp_t& kvp : bucket(key)) {
+            for (const typename dict::kvp_t& kvp : bucket(key)) {
                 if (kvp.key == key) {
                     return true;
                 }
@@ -45,15 +45,15 @@ namespace stdcol {
         }
 
         bool resize(index bucket_count) override {
-            dictionary::buckets_t new_buckets = dictionary::buckets_t(bucket_count);
+            typename dict::buckets_t new_buckets = typename dict::buckets_t(bucket_count);
             if (new_buckets.capacity() != bucket_count) {
                 return false;
             }
             return true;
         }
 
-        dictionary::kvp_t* get(const hashable_t& key) {
-            for (dictionary::kvp_t& kvp : bucket(key)) {
+        typename dict::kvp_t* get(const hashable_t& key) {
+            for (typename dict::kvp_t& kvp : bucket(key)) {
                 if (kvp.key == key) {
                     return & kvp;
                 }
@@ -62,8 +62,8 @@ namespace stdcol {
         }
 
         collectable_t& get_add(const hashable_t& key) {
-            dictionary::bucket_t& key_bucket = bucket(key);
-             for (dictionary::kvp_t& kvp : key_bucket) {
+             typename dict::bucket_t& key_bucket = bucket(key);
+             for (typename dict::kvp_t& kvp : key_bucket) {
                 if (kvp.key == key) {
                     return kvp.value;
                 }
@@ -77,11 +77,11 @@ namespace stdcol {
             return *(collectable_t*)nullptr;
         }
 
-        dictionary::buckets_t& buckets() override {
+        typename dict::buckets_t& buckets() override {
             return table_buckets;
         }
 
-        dictionary::bucket_t& bucket(const hashable_t& hashable) override {
+        typename dict::bucket_t& bucket(const hashable_t& hashable) override {
             return table_buckets[hash(hashable) % table_buckets.capacity()];
         }
 
@@ -90,7 +90,7 @@ namespace stdcol {
         }
 
     protected:
-        dictionary::buckets_t table_buckets;
+        typename dict::buckets_t table_buckets;
         hasher_t key_hasher;
     };
 }
