@@ -2,6 +2,8 @@
 
 using namespace stdcol;
 
+constexpr const index::int_type index::max;
+
 constexpr const index::int_type findex::not_found;
 
 index::index() : value(0) {}
