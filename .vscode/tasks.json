@@ -41,7 +41,7 @@
 		},
 		{
 			"type": "cppbuild",
-			"label": "Windows | UnitTest | Build",
+			"label": "UnitTest | Build Win",
 			"command": "cl.exe",
 			"args": [
 				"/Zi",
@@ -66,12 +66,12 @@
 			},
 			"detail": "compiler: cl.exe",
 			"dependsOn": [
-				"Ensure Build Dir"
+				"Ensure Build Dir",
 			]
 		},
 		{
 			"type": "cppbuild",
-			"label": "Linux | UnitTest | Build",
+			"label": "UnitTest | Build Unix",
 			"command": "g++",
 			"args": [
 				"-I \"${workspaceFolder}/include\"",
