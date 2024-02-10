@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <xhash>
 #include "TestFunctionWrapper.h"
 #include "TestObjects.h"
 #include <stdcol>
@@ -350,7 +351,6 @@ TesterFunction tests[] = {
 		{
 			using stdcol::dictionary;
 			using stdcol::hash_table;
-
 
 			return test_fail; //dynamic_array<linked<kvp_t>> destructor does a double free
 			auto hashtable = hash_table<int, int, std::hash<int>>();
