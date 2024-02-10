@@ -106,7 +106,7 @@ namespace stdcol {
         }
 
         index capacity() const override {
-            return size();
+            return index::max;
         }
 
         bool reserve(index new_capacity) override {
@@ -136,8 +136,29 @@ namespace stdcol {
         }
 
         bool resize(index new_size) override {
+            link current = head_node;
+            //current increases until new_size or current is nullptr.
+            for (index i = 0; i < new_size && current != nullptr; i++, current = current->next);
+
+            //new_size >= size()
+            if (current == nullptr) {
+                return true;
+            }
+
+
+            while (current != nullptr) {
+                if (current->previous != nullptr) {
+                    current->previous->next = nullptr;
+                }
+
+                link next = current->next;
+                delete current;
+                current = next;
+            }
+
             return true;
         }
+        
 
         bool insert(index index, const T& item) override {
             if (head_node == nullptr) {
@@ -230,7 +251,21 @@ namespace stdcol {
             return true;
         }
 
-        bool remove(index index) override {
+        bool remove(index idx) override {
+            link current = head_node;
+            for (index i = 0; current != nullptr; current = current->next, i++) {
+                if (i == idx) {
+                    if (current->previous != nullptr) {
+                        current->previous->next = current->next;
+                    }
+
+                    if (current->next != nullptr) {
+                        current->next->previous = current->previous;
+                    }
+
+                    break;
+                }
+            }
             return true;
         }
 
@@ -240,6 +275,10 @@ namespace stdcol {
 
         link tail() const {
             return tail_node;
+        }
+
+        ~linked() {
+            reserve(0);
         }
 
     protected:
