@@ -1,3 +1,6 @@
 clean:
 	del /f /q test\UnitTest\*.log
 	rmdir /s /q test\UnitTest\x64
+
+build:
+    cl -I include src/stdcol_index.cpp test/UnitTest/main.cpp

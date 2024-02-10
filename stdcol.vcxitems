@@ -14,8 +14,11 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\dictionary.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\hash_table.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\linked.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\set.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\stdcol_hasher.h" />
     <None Include="$(MSBuildThisFileDirectory)include\array.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\collection.h" />
     <None Include="$(MSBuildThisFileDirectory)include\dynamic_array.h" />

@@ -13,5 +13,8 @@
 #include "set.h"
 #include "queue.h"
 #include "linked.h"
+#include "stdcol_hasher.h"
+#include "dictionary.h"
+#include "hash_table.h"
 
 #endif
