@@ -79,6 +79,10 @@ namespace stdcol {
         linked()
             : head_node(nullptr), tail_node(nullptr) {}
 
+        linked(const linked<T>& other) : linked() {
+            *this = (collection<T>&)other;
+        }
+
         T* const at(index index) override {
             stdcol::index i = 0;
             for (link current = head_node; current != nullptr; current = current->next, i++) {
@@ -148,7 +152,6 @@ namespace stdcol {
                 return true;
             }
 
-
             while (current != nullptr) {
                 if (current->previous != nullptr) {
                     current->previous->next = nullptr;
@@ -161,7 +164,6 @@ namespace stdcol {
 
             return true;
         }
-        
 
         bool insert(index index, const T& item) override {
             if (head_node == nullptr) {
@@ -280,6 +282,18 @@ namespace stdcol {
             return tail_node;
         }
 
+        linked<T>& operator=(const collection<T>& other) {
+            index other_size = other.size();
+            resize(0);
+
+            for (int i = 0; i < other_size; i++) {
+                if (!insert(i, other[i])) {
+                    break;
+                }
+            }
+            return *this;
+        }
+
         ~linked() {
             reserve(0);
         }
@@ -287,7 +301,6 @@ namespace stdcol {
     protected:
         link head_node, tail_node;
     };
-
 
     template <typename T>
     iterable<linked_iterator<T>> iterate(linked<T>& linked) {

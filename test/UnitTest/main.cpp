@@ -186,6 +186,9 @@ TesterFunction tests[] = {
 				}
 			}
 			tlog << "]\n";
+
+			dynamic_array<array<double, 2>> pairsCopy = pairsArray;
+
 			pairs.resize(0);
 			tlog << "Capacity: " << pairs.capacity() << '\n';
 			return test_pass;
@@ -252,6 +255,8 @@ TesterFunction tests[] = {
 
 			ints.emplace(2, 6);
 			ints.emplace(5, 10);
+
+			linked<int> copy = ints;
 
 			return test_pass;
 		}

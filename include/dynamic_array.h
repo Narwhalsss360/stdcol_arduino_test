@@ -14,8 +14,12 @@ namespace stdcol {
             *this = init_list;
         }
 
+        dynamic_array(const dynamic_array<collectable_t>& other) : dynamic_array() {
+            *this = (collection<collectable_t>&)other;
+        }
+
         dynamic_array(index size) : dynamic_array() {
-            reserve(size);
+            resize(size);
         }
 
         collectable_t* const at(index index) override {
@@ -115,9 +119,21 @@ namespace stdcol {
         }
 
         dynamic_array<collectable_t>& operator=(const initializer_list<collectable_t>& init_list) {
+            if (capacity() < init_list.size())
+                reserve(init_list.size());
+
             for (const auto& item : init_list) {
                 if (!insert(size(), item)) {
                     break;
+                }
+            }
+            return *this;
+        }
+
+        dynamic_array<collectable_t>& operator=(const collection<collectable_t>& other) {
+            if (resize(other.size())) {
+                for (index i = 0; i < size(); i++) {
+                    block[i] = other[i];
                 }
             }
             return *this;

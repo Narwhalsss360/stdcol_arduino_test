@@ -11,6 +11,14 @@ namespace stdcol {
 
         set(index size) : items(dynamic_array<collectable_t>(size)) {}
 
+        set(const initializer_list<collectable_t>& init_list) : items(dynamic_array<collectable_t>()) {
+            *this = init_list;
+        }
+
+        set(const set<collectable_t>& other) : set() {
+            *this = (collection<collectable_t>&)other;
+        }
+
         bool contains(const collectable_t& item) const {
             for (index i = 0; i < this->size(); i++) {
                 if (items[i] == item) {
@@ -42,6 +50,27 @@ namespace stdcol {
         }
 
         bool remove(index index) override { return items.remove(index); }
+
+        set<collectable_t>& operator=(const initializer_list<collectable_t>& init_list) {
+            if (capacity() < init_list.size())
+                reserve(init_list.size());
+
+            for (const auto& i : init_list) {
+                if (!insert(size(), i)) {
+                    break;
+                }
+            }
+            return *this;
+        }
+
+        set<collectable_t>& operator=(const collection<collectable_t>& other) {
+            items.resize(0);
+            items.resize(other.size());
+            for (const auto& i : other) {
+                insert(items.size(), i);
+            }
+            return *this;
+        }
 
     protected:
         dynamic_array<collectable_t> items;
