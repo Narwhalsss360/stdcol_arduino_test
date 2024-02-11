@@ -11,7 +11,7 @@ namespace stdcol {
 
         hash_table() : table_buckets(typename dict::buckets_t(11)), key_hasher(hasher_t()) {}
 
-        hash_table(index size) : table_buckets(dict::buckets_t(size)), key_hasher(hasher_t()) {}
+        hash_table(index size) : table_buckets(typename dict::buckets_t(size)), key_hasher(hasher_t()) {}
 
         bool contains(const hashable_t& key) override {
             for (const typename dict::kvp_t& kvp : bucket(key)) {
