@@ -5,6 +5,10 @@
 #include "TestObjects.h"
 #include <stdcol>
 
+//stl hash<>
+#include <system_error> //posix
+//#include <xhash> //win32
+
 constexpr char flog_name[] = "Test Results.log";
 
 std::ofstream flog = std::ofstream(flog_name);
@@ -340,6 +344,43 @@ TesterFunction tests[] = {
 					continue;
 				}
 				return test_fail;
+			}
+
+			return test_pass;
+		}
+	},
+	{
+		"hash_table",
+		[](TesterFunction& this_test)
+		{
+			using stdcol::dictionary;
+			using stdcol::hash_table;
+
+			//return test_fail; //dynamic_array<linked<kvp_t>> destructor does a double free
+			auto hashtable = hash_table<int, int, std::hash<int>>(4);
+			dictionary<int, int>& fsamples = hashtable;
+
+			auto f = [](int x) { return ((x * x * x) / 6) - (2 * x); };
+
+			for (int x = -5; x <= 5; x++) {
+				fsamples.add(x, f(x));
+			}
+
+			if (!fsamples.contains(5)) {
+				return test_fail;
+			}
+
+            for (int x = 10; x <= 20; x++) {
+                fsamples[x] = f(x);
+            }
+
+			dictionary<int, int>::buckets_t buckets = fsamples.buckets();
+			
+			for (dictionary<int, int>::bucket_t& bucket : buckets) {
+				std::cout << "---\n";
+				for (dictionary<int, int>::kvp_t& kvp : bucket) {
+					std::cout << "    " << kvp.key << ',' << kvp.value << "\n";
+				}
 			}
 
 			return test_pass;

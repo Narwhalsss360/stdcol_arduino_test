@@ -58,5 +58,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\set.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\dictionary.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\stdcol_hasher.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\hash_table.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
