@@ -351,8 +351,8 @@ TesterFunction tests[] = {
 			using stdcol::dictionary;
 			using stdcol::hash_table;
 
-			return test_fail; //dynamic_array<linked<kvp_t>> destructor does a double free
-			auto hashtable = hash_table<int, int, std::hash<int>>();
+			//return test_fail; //dynamic_array<linked<kvp_t>> destructor does a double free
+			auto hashtable = hash_table<int, int, std::hash<int>>(4);
 			dictionary<int, int>& fsamples = hashtable;
 
 			auto f = [](int x) { return ((x * x * x) / 6) - (2 * x); };
@@ -370,7 +370,7 @@ TesterFunction tests[] = {
             }
 
 			dictionary<int, int>::buckets_t buckets = fsamples.buckets();
-
+			
 			for (dictionary<int, int>::bucket_t& bucket : buckets) {
 				std::cout << "---\n";
 				for (dictionary<int, int>::kvp_t& kvp : bucket) {

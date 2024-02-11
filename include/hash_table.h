@@ -46,7 +46,7 @@ namespace stdcol {
 
         bool resize(index bucket_count) override {
             typename dict::buckets_t new_buckets = typename dict::buckets_t(bucket_count);
-            if (new_buckets.capacity() != bucket_count) {
+            if (new_buckets.size() != bucket_count) {
                 return false;
             }
             return true;
@@ -82,7 +82,7 @@ namespace stdcol {
         }
 
         typename dict::bucket_t& bucket(const hashable_t& hashable) override {
-            return table_buckets[hash(hashable) % table_buckets.capacity()];
+            return table_buckets[hash(hashable) % table_buckets.size()];
         }
 
         index hash(const hashable_t& key) override {
