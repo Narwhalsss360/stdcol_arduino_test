@@ -111,8 +111,11 @@ namespace stdcol {
 
         bool reserve(index new_capacity) override {
             if (new_capacity == 0) {
-                for (link n = head_node; n != nullptr; n = n->next) {
-                    delete n;
+                link current = head_node;
+                while (current != nullptr) {
+                    link next = current->next;
+                    delete current;
+                    current = next;
                 }
                 head_node = nullptr;
                 tail_node = nullptr;
