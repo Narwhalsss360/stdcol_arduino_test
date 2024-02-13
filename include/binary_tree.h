@@ -320,6 +320,11 @@ namespace stdcol {
     protected:
         link root_node;
     };
+
+    template <typename T>
+    iterable<tree_traversals::in_order<T>> iterate(binary_tree<T>& tree) {
+        return tree.in_order();
+    }
 }
 
 #endif
