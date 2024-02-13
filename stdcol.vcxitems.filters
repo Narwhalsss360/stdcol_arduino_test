@@ -67,5 +67,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\hash_table.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\binary_tree.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\tree.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
