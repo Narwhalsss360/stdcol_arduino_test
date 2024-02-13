@@ -403,7 +403,7 @@ TesterFunction tests[] = {
 			tree.emplace(5);
 			tree.emplace(7);
 
-			binary_tree_node<int> root = tree.root();
+			binary_tree_node<int>* root = tree.root();
 
 			return test_pass;
 		}
