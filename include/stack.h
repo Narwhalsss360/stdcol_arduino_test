@@ -7,6 +7,14 @@ namespace stdcol {
     template <typename collectable_t>
     class stack : public dynamic_array<collectable_t> {
     public:
+        stack() : dynamic_array<collectable_t>() {}
+
+        stack(const initializer_list<collectable_t>& init_list) : dynamic_array<collectable_t>(init_list) {}
+
+        stack (const stack<collectable_t>& other) : dynamic_array<collectable_t>(other) {}
+
+        stack(index size) : dynamic_array<collectable_t>(size) {}
+
         bool push(const collectable_t& item) {
             return this->insert(this->size(), item);
         }
@@ -19,8 +27,8 @@ namespace stdcol {
             if (this->size() == 0) {
                 return false;
             }
-            *out = *this->at(0);
-            this->remove(0);
+            *out = *this->at(this->size() - 1);
+            this->remove(this->size() - 1);
             return true;
         }
 
@@ -30,6 +38,10 @@ namespace stdcol {
 
         bool operator-=(collectable_t& out) {
             return pop(out);
+        }
+
+        stack<collectable_t>& operator=(const stack<collectable_t>& other) {
+            return (dynamic_array<collectable_t>&)*this = (const dynamic_array<collectable_t>&)other;
         }
     };
 }

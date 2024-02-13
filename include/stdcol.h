@@ -12,6 +12,7 @@
 #include "dynamic_array.h"
 #include "set.h"
 #include "queue.h"
+#include "stack.h"
 #include "linked.h"
 #include "stdcol_hasher.h"
 #include "dictionary.h"
