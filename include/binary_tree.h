@@ -105,53 +105,40 @@ namespace stdcol {
                 return;
             }
 
-            if (node->parent_node->children_nodes[0] == node) {
-                node->parent_node->children_nodes[0] = nullptr;
-            } else {
-                node->parent_node->children_nodes[1] = nullptr;
-            }
-
-            link newSide;
-            //Left side
-            link side = node->children_nodes[0];
-            while (side->children_nodes[0] != nullptr) {
-                side = side->children_nodes[0];
-            }
-
-            while (side != node) {
-                if (side->children_nodes[0] != nullptr) {
-                    delete side->children_nodes[0];
+            link current = node, newCurrent = node;
+            do {
+                if (current->children_nodes[0] != nullptr) {
+                    current = current->children_nodes[0];
+                    continue;
                 }
 
-                if (side->children_nodes[1] != nullptr) {
-                    delete side->children_nodes[1];
+                if (current->children_nodes[1] != nullptr) {
+                    current = current->children_nodes[1];
+                    continue;
                 }
 
-                newSide = side->parent_node;
-                delete side;
-                side = newSide;
-            }
+                newCurrent = current->parent_node;
 
-            //Right side
-            side = node->children_nodes[1];
-            while (side->children_nodes[1] != nullptr) {
-                side = side->children_nodes[1];
-            }
-
-            while (side != node) {
-                if (side->children_nodes[0] != nullptr) {
-                    delete side->children_nodes[0];
+                if (newCurrent->children_nodes[0] == current) {
+                    newCurrent->children_nodes[0] = nullptr;
+                } else {
+                    newCurrent->children_nodes[1] = nullptr;
                 }
+                delete current;
+                current = newCurrent;
+            } while (current != node || current->children_nodes[1] != nullptr);
 
-                if (side->children_nodes[1] != nullptr) {
-                    delete side->children_nodes[1];
+            if (node->parent_node != nullptr) {
+                if (node->parent_node->children_nodes[0] == node) {
+                    node->parent_node->children_nodes[0] = nullptr;
+                } else {
+                    node->parent_node->children_nodes[1] = nullptr;
                 }
-
-                newSide = side->parent_node;
-                delete side;
-                side = newSide;
             }
 
+            if (node == root_node) {
+                root_node = nullptr;
+            }
             delete node;
         }
 
