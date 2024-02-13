@@ -475,6 +475,34 @@ TesterFunction tests[] = {
 
 			return test_pass;
 		}
+	},
+	{
+		"priority_queue",
+		[](TesterFunction& this_test)
+		{
+			using stdcol::priority_queue;
+
+			priority_queue<int> queue;
+			queue += { 0, 1 };
+			queue += { 0, 2 };
+			queue += { 0, 3 };
+			queue += { 0, 4 };
+			queue += { 0, 5 };
+			queue += { 1, 6 };
+			queue += { 1, 7 };
+			queue += { 1, 8 };
+			queue += { 1, 9 };
+			queue += { 1, 10 };
+
+			while (queue.size()) {
+				int item;
+				queue -= item;
+				tlog << item << ' ';
+			}
+			tlog << '\n';
+
+			return test_pass;
+		}
 	}
 };
 

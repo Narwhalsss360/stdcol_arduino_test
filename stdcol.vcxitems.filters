@@ -76,5 +76,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\tree.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\priority_queue.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
