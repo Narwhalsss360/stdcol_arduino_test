@@ -72,6 +72,10 @@ namespace stdcol {
             return *this;
         }
 
+        set<collectable_t>& operator=(const set<collectable_t>& other) {
+            return operator=((const collection<collectable_t>&)other);
+        }
+
     protected:
         dynamic_array<collectable_t> items;
     };

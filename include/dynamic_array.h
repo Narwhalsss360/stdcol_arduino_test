@@ -139,6 +139,10 @@ namespace stdcol {
             return *this;
         }
 
+        dynamic_array<collectable_t>& operator=(const dynamic_array<collectable_t>& other) {
+            return operator=((const collection<collectable_t>&)other);
+        }
+
         ~dynamic_array() {
             reserve(0);
         }

@@ -294,6 +294,10 @@ namespace stdcol {
             return *this;
         }
 
+        linked<T>& operator=(const linked<T>& other) {
+            return operator=((const collection<T>&)other);
+        }
+
         ~linked() {
             reserve(0);
         }
