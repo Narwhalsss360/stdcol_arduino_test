@@ -66,8 +66,8 @@ namespace stdcol {
         set<collectable_t>& operator=(const collection<collectable_t>& other) {
             items.resize(0);
             items.resize(other.size());
-            for (const auto& i : other) {
-                insert(items.size(), i);
+            for (int i = 0; i < other.size(); i++) {
+                insert(items.size(), other[i]);
             }
             return *this;
         }
