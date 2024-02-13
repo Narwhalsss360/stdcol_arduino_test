@@ -144,7 +144,7 @@ TesterFunction tests[] = {
 			tlog << '\n';
 
 			for (auto e : enumerate(nums)) {
-				(float&)e = e.index / 2.0;
+				(float&)e = e.index / 2.0f;
 			}
 
 			tlog << "Index-based: ";
@@ -281,7 +281,7 @@ TesterFunction tests[] = {
 
 			index i = 0;
 			for (int n = 2; n <= 1000; n += n, i++) {
-				items.emplace(i, 2 * i, n);
+				items.emplace(i, (unsigned int)(2 * i), n);
 			}
 
 			for (auto& n : iterate(items)) {
