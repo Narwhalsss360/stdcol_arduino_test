@@ -385,6 +385,34 @@ TesterFunction tests[] = {
 
 			return test_pass;
 		}
+	},
+	{
+		"stack",
+		[](TesterFunction& this_test)
+		{
+			using stdcol::stack;
+
+			stack<int> intStack;
+
+			for (int i = 5; i <= 50; i += 5) {
+				if (!(intStack += i)) {
+					tlog << "Failed to push\n";
+					return test_fail;
+				}
+			}
+
+			while (intStack.size()) {
+				int out;
+				if (!(intStack -= out)) {
+					tlog << "Failed to pop\n";
+					return test_fail;
+				}
+				tlog << out << ' ';
+			}
+			tlog << '\n';
+
+			return test_pass;
+		}
 	}
 };
 

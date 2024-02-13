@@ -7,6 +7,14 @@ namespace stdcol {
     template <typename collectable_t>
     class queue : public dynamic_array<collectable_t> {
     public:
+        queue() : dynamic_array<collectable_t>() {}
+
+        queue(const initializer_list<collectable_t>& init_list) : dynamic_array<collectable_t>(init_list) {}
+
+        queue(const queue<collectable_t>& other) : dynamic_array<collectable_t>(other) {}
+
+        queue(index size) : dynamic_array<collectable_t>(size) {}
+
         bool enqueue(const collectable_t& item) {
             return this->insert(this->size(), item);
         }
@@ -30,6 +38,10 @@ namespace stdcol {
 
         bool operator-=(collectable_t& out) {
             return dequeue(out);
+        }
+
+        queue<collectable_t>& operator=(const queue<collectable_t>& other) {
+            return (dynamic_array<collectable_t>&)*this = (const dynamic_array<collectable_t>&)other;
         }
     };
 }
