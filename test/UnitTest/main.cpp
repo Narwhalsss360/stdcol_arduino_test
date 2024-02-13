@@ -439,30 +439,6 @@ TesterFunction tests[] = {
 		}
 	},
 	{
-		"binary_tree",
-		[](TesterFunction& this_test)
-		{
-			using stdcol::binary_tree;
-			using stdcol::binary_tree_node;
-			using stdcol::dynamic_array;
-
-			binary_tree<int> tree;
-
-			tree.emplace(4);
-			tree.emplace(2);
-			tree.emplace(6);
-			tree.emplace(1);
-			tree.emplace(3);
-			tree.emplace(5);
-			tree.emplace(7);
-
-			binary_tree_node<int>* root = tree.root();
-
-			binary_tree_node<int>* node_5 = tree.find(5);
-			return test_pass;
-		}
-	},
-	{
 		"binary_tree traversals",
 		[](TesterFunction& this_test)
 		{
