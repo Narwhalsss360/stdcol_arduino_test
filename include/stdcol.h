@@ -16,5 +16,7 @@
 #include "stdcol_hasher.h"
 #include "dictionary.h"
 #include "hash_table.h"
+#include "tree.h"
+#include "binary_tree.h"
 
 #endif

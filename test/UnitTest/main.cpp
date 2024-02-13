@@ -370,18 +370,40 @@ TesterFunction tests[] = {
 				return test_fail;
 			}
 
-            for (int x = 10; x <= 20; x++) {
-                fsamples[x] = f(x);
-            }
+			for (int x = 10; x <= 20; x++) {
+				fsamples[x] = f(x);
+			}
 
 			dictionary<int, int>::buckets_t buckets = fsamples.buckets();
-			
+
 			for (dictionary<int, int>::bucket_t& bucket : buckets) {
 				std::cout << "---\n";
 				for (dictionary<int, int>::kvp_t& kvp : bucket) {
 					std::cout << "    " << kvp.key << ',' << kvp.value << "\n";
 				}
 			}
+
+			return test_pass;
+		}
+	},
+	{
+		"binary_tree",
+		[](TesterFunction& this_test)
+		{
+			using stdcol::binary_tree;
+			using stdcol::binary_tree_node;
+
+			binary_tree<int> tree;
+
+			tree.emplace(4);
+			tree.emplace(2);
+			tree.emplace(6);
+			tree.emplace(1);
+			tree.emplace(3);
+			tree.emplace(5);
+			tree.emplace(7);
+
+			binary_tree_node<int> root = tree.root();
 
 			return test_pass;
 		}
