@@ -392,6 +392,7 @@ TesterFunction tests[] = {
 		{
 			using stdcol::binary_tree;
 			using stdcol::binary_tree_node;
+			using stdcol::dynamic_array;
 
 			binary_tree<int> tree;
 
@@ -404,6 +405,14 @@ TesterFunction tests[] = {
 			tree.emplace(7);
 
 			binary_tree_node<int>* root = tree.root();
+
+			binary_tree_node<int>* node_5 = tree.find(5);
+
+			dynamic_array<int> postOrder = tree.post_order();
+
+			for (const int& i : postOrder) {
+				tlog << i << ' ';
+			}
 
 			return test_pass;
 		}

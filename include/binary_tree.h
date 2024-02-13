@@ -3,6 +3,7 @@
 
 #include "tree.h"
 #include "array.h"
+#include "dynamic_array.h"
 
 namespace stdcol {
     template <typename T>
@@ -74,7 +75,7 @@ namespace stdcol {
                 root_node = new_node;
             } else {
                 link current = root_node;
-                while (current) {
+                while (current != nullptr) {
                     if (new_node->value < current->value) {
                         if (current->children_nodes[0] == nullptr) {
                             new_node->parent_node = current;
@@ -140,6 +141,84 @@ namespace stdcol {
                 root_node = nullptr;
             }
             delete node;
+        }
+
+        link find(bool (*predicate)(const T&)) {
+            if (predicate == nullptr) {
+                return nullptr;
+            }
+
+            link current = root_node;
+
+            while (current != nullptr) {
+                int result = predicate(current->value);
+                if (result == -1) {
+                    current = current->children_nodes[0];
+                } else if (result == 1) {
+                    current = current->children_nodes[1];
+                } else {
+                    return current;
+                }
+            }
+
+            return nullptr;
+        }
+
+        link find(const T& value) {
+            link current = root_node;
+
+            while (current != nullptr) {
+                if (value < current->value) {
+                    current = current->children_nodes[0];
+                } else if (current->value < value) {
+                    current = current->children_nodes[1];
+                } else {
+                    return current;
+                }
+            }
+
+            return nullptr;
+        }
+
+        dynamic_array<T> post_order() {
+            dynamic_array<T> items;
+            if (root_node == nullptr) {
+                return items;
+            }
+
+            link current = root_node, previous_left = nullptr, previous_right = nullptr;
+            do
+            {
+                if (current->children_nodes[0] != previous_left && current->children_nodes[0] != nullptr) {
+                    current = current->children_nodes[0];
+                    previous_left = current;
+                    continue;
+                }
+
+                if (current->children_nodes[1] != previous_right && current->children_nodes[1] != nullptr) {
+                    current = current->children_nodes[1];
+                    previous_right = current;
+                    continue;
+                }
+
+                if (current->children_nodes[1] == previous_right && current->children_nodes[0] == previous_left) {
+                    if (current->parent_node != nullptr) {
+                        if (current->parent_node->children_nodes[0] == current) {
+                            previous_left = current;
+                        } else {
+                            previous_right = current;
+                        }
+                    }
+                }
+
+                items.insert(items.size(), current->value);
+
+                current = current->parent_node;
+            } while (current != root_node || previous_right != root_node->children_nodes[1]);
+
+            items.insert(items.size(), root_node->value);
+
+            return items;
         }
 
         ~binary_tree() {
