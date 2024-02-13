@@ -4,6 +4,8 @@
 #include "tree.h"
 #include "array.h"
 #include "dynamic_array.h"
+#include "stack.h"
+#include "set.h"
 
 namespace stdcol {
     template <typename T>
@@ -37,11 +39,11 @@ namespace stdcol {
             return (collection<typename node::tree_link>&)children_nodes;
         }
 
-        link left() {
+        link& left() const {
             return children_nodes[0];
         }
 
-        link right() {
+        link& right() const {
             return children_nodes[1];
         }
 
@@ -49,9 +51,120 @@ namespace stdcol {
         friend class binary_tree<T>;
 
         T value;
-        link parent_node;
-        array<link, 2> children_nodes;
+        mutable link parent_node;
+        mutable array<link, 2> children_nodes;
     };
+
+    namespace tree_traversals {
+        template <typename T>
+        class in_order {
+        public:
+        in_order(binary_tree_node<T>* root)
+            : next(stack<binary_tree_node<T>*>()), current(root) {}
+
+        bool operator!=(const in_order<T>& other) const {
+            return next.size() > 0 || current != nullptr;
+        }
+
+        in_order<T>& operator++() {
+            current = current->right();
+            return *this;
+        }
+
+        in_order<T>& operator++(int) {
+            return operator++();
+        }
+
+        T& operator*() const {
+            while (current != nullptr) {
+                next += current;
+                current = current->left();
+            }
+
+            next -= current;
+            return **current;
+        }
+
+        protected:
+            mutable stack<binary_tree_node<T>*> next;
+            mutable binary_tree_node<T>* current;
+        };
+
+        template <typename T>
+        class pre_order {
+        public:
+            pre_order(binary_tree_node<T>* root)
+                : next(stack<binary_tree_node<T>*>({ root })), current(nullptr) {}
+
+            bool operator!=(const pre_order<T>& other) const {
+                return next.size() > 0;
+            }
+
+            pre_order<T>& operator++() {
+                if (current != nullptr) {
+                    if (current->right()) {
+                        next += current->right();
+                    }
+                    if (current->left()) {
+                        next += current->left();
+                    }
+                }
+                return *this;
+            }
+
+            pre_order<T>& operator++(int) {
+                return operator++();
+            }
+
+            T& operator*() const {
+                next -= current;
+                return **current;
+            }
+
+        protected:
+            mutable stack<binary_tree_node<T>*> next;
+            mutable binary_tree_node<T>* current;
+        };
+
+        template <typename T>
+        class post_order {
+        public:
+            post_order(binary_tree_node<T>* root)
+                : visited(set<binary_tree_node<T>*>()), current(root), root(root) {}
+
+            bool operator!=(const post_order<T>& other) const {
+                return current != nullptr && !visited.contains(current);
+            }
+
+            post_order<T>& operator++() {
+                return *this;
+            }
+
+            post_order<T>& operator++(int) {
+                return operator++();
+            }
+
+            T& operator*() const {
+                if (current->left() != nullptr && !visited.contains(current->left())) {
+                    current = current->left();
+                    return operator*();
+                } else if (current->right() != nullptr && !visited.contains(current->right())) {
+                    current = current->right();
+                    return operator*();
+                } else {
+                    T& value = **current;
+                    visited.insert(visited.size(), current);
+                    current = root;
+                    return value;
+                }
+            }
+
+        protected:
+            mutable set<binary_tree_node<T>*> visited;
+            mutable binary_tree_node<T>* current;
+            mutable binary_tree_node<T>* root;
+        };
+    }
 
     template <typename T>
     class binary_tree : public tree<binary_tree_node<T>> {
@@ -77,21 +190,21 @@ namespace stdcol {
                 link current = root_node;
                 while (current != nullptr) {
                     if (new_node->value < current->value) {
-                        if (current->children_nodes[0] == nullptr) {
+                        if (current->left() == nullptr) {
                             new_node->parent_node = current;
-                            current->children_nodes[0] = new_node;
+                            current->left() = new_node;
                             break;
                         } else {
-                            current = current->children_nodes[0];
+                            current = current->left();
                             continue;
                         }
                     } else {
-                        if (current->children_nodes[1] == nullptr) {
+                        if (current->right() == nullptr) {
                             new_node->parent_node = current;
-                            current->children_nodes[1] = new_node;
+                            current->right() = new_node;
                             break;
                         } else {
-                            current = current->children_nodes[1];
+                            current = current->right();
                             continue;
                         }
                     }
@@ -108,32 +221,32 @@ namespace stdcol {
 
             link current = node, newCurrent = node;
             do {
-                if (current->children_nodes[0] != nullptr) {
-                    current = current->children_nodes[0];
+                if (current->left() != nullptr) {
+                    current = current->left();
                     continue;
                 }
 
-                if (current->children_nodes[1] != nullptr) {
-                    current = current->children_nodes[1];
+                if (current->right() != nullptr) {
+                    current = current->right();
                     continue;
                 }
 
                 newCurrent = current->parent_node;
 
-                if (newCurrent->children_nodes[0] == current) {
-                    newCurrent->children_nodes[0] = nullptr;
+                if (newCurrent->left() == current) {
+                    newCurrent->left() = nullptr;
                 } else {
-                    newCurrent->children_nodes[1] = nullptr;
+                    newCurrent->right() = nullptr;
                 }
                 delete current;
                 current = newCurrent;
-            } while (current != node || current->children_nodes[1] != nullptr);
+            } while (current != node || current->right() != nullptr);
 
             if (node->parent_node != nullptr) {
-                if (node->parent_node->children_nodes[0] == node) {
-                    node->parent_node->children_nodes[0] = nullptr;
+                if (node->parent_node->left() == node) {
+                    node->parent_node->left() = nullptr;
                 } else {
-                    node->parent_node->children_nodes[1] = nullptr;
+                    node->parent_node->right() = nullptr;
                 }
             }
 
@@ -153,9 +266,9 @@ namespace stdcol {
             while (current != nullptr) {
                 int result = predicate(current->value);
                 if (result == -1) {
-                    current = current->children_nodes[0];
+                    current = current->left();
                 } else if (result == 1) {
-                    current = current->children_nodes[1];
+                    current = current->right();
                 } else {
                     return current;
                 }
@@ -169,9 +282,9 @@ namespace stdcol {
 
             while (current != nullptr) {
                 if (value < current->value) {
-                    current = current->children_nodes[0];
+                    current = current->left();
                 } else if (current->value < value) {
-                    current = current->children_nodes[1];
+                    current = current->right();
                 } else {
                     return current;
                 }
@@ -180,45 +293,24 @@ namespace stdcol {
             return nullptr;
         }
 
-        dynamic_array<T> post_order() {
-            dynamic_array<T> items;
-            if (root_node == nullptr) {
-                return items;
-            }
+        tree_traversals::in_order<T> begin() {
+            return tree_traversals::in_order<T>(root());
+        }
 
-            link current = root_node, previous_left = nullptr, previous_right = nullptr;
-            do
-            {
-                if (current->children_nodes[0] != previous_left && current->children_nodes[0] != nullptr) {
-                    current = current->children_nodes[0];
-                    previous_left = current;
-                    continue;
-                }
+        tree_traversals::in_order<T> end() {
+            return tree_traversals::in_order<T>(nullptr);
+        }
 
-                if (current->children_nodes[1] != previous_right && current->children_nodes[1] != nullptr) {
-                    current = current->children_nodes[1];
-                    previous_right = current;
-                    continue;
-                }
+        iterable<tree_traversals::in_order<T>> in_order() {
+            return iterable<tree_traversals::in_order<T>>(tree_traversals::in_order<T>(root()), tree_traversals::in_order<T>(nullptr));
+        }
 
-                if (current->children_nodes[1] == previous_right && current->children_nodes[0] == previous_left) {
-                    if (current->parent_node != nullptr) {
-                        if (current->parent_node->children_nodes[0] == current) {
-                            previous_left = current;
-                        } else {
-                            previous_right = current;
-                        }
-                    }
-                }
+        iterable<tree_traversals::pre_order<T>> pre_order() {
+            return iterable<tree_traversals::pre_order<T>>(tree_traversals::pre_order<T>(root()), tree_traversals::pre_order<T>(nullptr));
+        }
 
-                items.insert(items.size(), current->value);
-
-                current = current->parent_node;
-            } while (current != root_node || previous_right != root_node->children_nodes[1]);
-
-            items.insert(items.size(), root_node->value);
-
-            return items;
+        iterable<tree_traversals::post_order<T>> post_order() {
+            return iterable<tree_traversals::post_order<T>>(tree_traversals::post_order<T>(root()), tree_traversals::post_order<T>(nullptr));
         }
 
         ~binary_tree() {

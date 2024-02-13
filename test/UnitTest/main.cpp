@@ -435,13 +435,6 @@ TesterFunction tests[] = {
 			binary_tree_node<int>* root = tree.root();
 
 			binary_tree_node<int>* node_5 = tree.find(5);
-
-			dynamic_array<int> postOrder = tree.post_order();
-
-			for (const int& i : postOrder) {
-				tlog << i << ' ';
-			}
-
 			return test_pass;
 		}
 	},
@@ -466,12 +459,43 @@ TesterFunction tests[] = {
 			binary_tree_node<int>* root = tree.root();
 
 			binary_tree_node<int>* node_5 = tree.find(5);
+			return test_pass;
+		}
+	},
+	{
+		"binary_tree traversals",
+		[](TesterFunction& this_test)
+		{
+			using stdcol::stack;
+			using stdcol::set;
+			using stdcol::binary_tree;
+			using stdcol::binary_tree_node;
+			using namespace stdcol::tree_traversals;
 
-			dynamic_array<int> postOrder = tree.post_order();
+			binary_tree<int> tree;
 
-			for (const int& i : postOrder) {
-				tlog << i << ' ';
+			tree.emplace(4);
+			tree.emplace(2);
+			tree.emplace(6);
+			tree.emplace(1);
+			tree.emplace(3);
+			tree.emplace(5);
+			tree.emplace(7);
+
+			for (auto i : tree) {
+				tlog << i;
 			}
+			tlog << '\n';
+
+			for (auto i : tree.pre_order()) {
+				tlog << i;
+			}
+			tlog << '\n';
+
+			for (auto i : tree.post_order()) {
+				tlog << i;
+			}
+			tlog << '\n';
 
 			return test_pass;
 		}
