@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\hash_table.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\linked.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\set.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\stack.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\stdcol_hasher.h" />
     <None Include="$(MSBuildThisFileDirectory)include\array.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\collection.h" />
