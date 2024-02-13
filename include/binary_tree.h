@@ -18,6 +18,8 @@ namespace stdcol {
         binary_tree_node()
             : value(T()), parent_node(nullptr), children_nodes({ nullptr, nullptr }) {}
 
+        binary_tree_node(link) = delete;
+
         template <typename... args_t>
         binary_tree_node(link parent_node, args_t... args)
             : value(args...), parent_node(parent_node), children_nodes({ nullptr , nullptr }) {}
@@ -80,6 +82,7 @@ namespace stdcol {
                             break;
                         } else {
                             current = current->children_nodes[0];
+                            continue;
                         }
                     } else {
                         if (current->children_nodes[1] == nullptr) {
@@ -88,6 +91,7 @@ namespace stdcol {
                             break;
                         } else {
                             current = current->children_nodes[1];
+                            continue;
                         }
                     }
                 }
