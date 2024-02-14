@@ -1,105 +1,53 @@
 {
 	"version": "2.0.0",
+	"options": {
+		"shell": {
+			"executable": "cmd.exe",
+			"args": [
+				"/d", "/c vcvars64 &"
+			]
+		}
+	},
 	"tasks": [
 		{
 			"type": "shell",
-			"label": "Ensure Build Dir",
-			"windows": {
-				"command": "New-Item",
-				"args": [
-					"-ItemType",
-					"Directory",
-					"-Force",
-					"-Path",
-					"\"${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\Intermediate\"",
-					"-ErrorAction",
-					"SilentlyContinue"
-				],
-				"options": {
-					"cwd": "${workspaceFolder}",
-					"statusbar": {
-						"hide": false
-					}
-				}
-			},
-			"linux": {
-				"command": "mkdir",
-				"args": [
-					"-p",
-					"\"${workspaceFolder}/test/UnitTest/bin\""
-				],
-				"options": {
-					"cwd": "${workspaceFolder}",
-					"statusbar": {
-						"hide": false
-					}
-				}
-			},
-			"group": "none",
-			"detail": "Ensure directories exist for build",
-			"problemMatcher": []
-		},
-		{
-			"type": "cppbuild",
-			"label": "UnitTest | Build Win",
-			"command": "cl.exe",
-			"args": [
-				"/Zi",
-				"/EHsc",
-				"/nologo",
-				"/Fo${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\Intermediate\\",
-				"/Fd${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\",
-				"/Fe${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\UnitTest.exe",
-				"/I${workspaceFolder}\\include\\",
-				"${workspaceFolder}\\test\\UnitTest\\main.cpp",
-				"${workspaceFolder}\\src\\stdcol_index.cpp"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}\\test\\UnitTest"
-			},
-			"problemMatcher": [
-				"$msCompile"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"detail": "compiler: cl.exe",
-			"dependsOn": [
-				"Ensure Build Dir",
-			]
-		},
-		{
-			"type": "cppbuild",
-			"label": "UnitTest | Build Unix",
-			"command": "g++",
-			"args": [
-				"-I \"${workspaceFolder}/include\"",
-				"\"${workspaceFolder}/src/stdcol_index.cpp\"",
-				"\"${workspaceFolder}/test/UnitTest/main.cpp\"",
-				"-o \"${workspaceFolder}/test/UnitTest/bin/unittest\"",
-				"-Wpedantic",
-				"-std=c++11"
-			],
-			"options": {
-				"cwd": "\"${workspaceFolder}/test/UnitTest\""
-			},
-			"dependsOn": [
-				"Ensure Build Dir"
-			]
-		},
-		{
-			"type": "shell",
-			"label": "UnitTest | Clean",
-			"command": "make",
-			"args": [
-				"clean"
-			],
+			"label": "Clean",
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
-			"group": "none",
-			"detail": "clean: make"
+			"windows": {
+				"command": "make",
+				"args": [
+					"clean_win"
+				],
+			},
+			"linux": {
+				"command": "make",
+				"args": [
+					"clean_unix"
+				]
+			}
+		},
+		{
+			"type": "shell",
+			"label": "Build",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"windows": {
+				"command": "make",
+				"args": [
+					"build_win"
+				],
+				"problemMatcher":"$msCompile",
+			},
+			"linux": {
+				"command": "make",
+				"args": [
+					"build_unix"
+				],
+				"problemMatcher":"$gcc"
+			}
 		}
 	]
 }
