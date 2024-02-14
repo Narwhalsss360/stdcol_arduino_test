@@ -5,7 +5,7 @@ clean_win:
 clean_unix:
 	rmdir test/UnitTest/bin
 
-build_win: clean
+build_win: clean_win
 	mkdir test\UnitTest\x64\Debug\Intermediate
 	cl /Zi /EHsc /nologo /I"include" "test\UnitTest\main.cpp" "src\stdcol_index.cpp" /Fe"test\UnitTest\x64\Debug\UnitTest.exe" /Fd"test\UnitTest\x64\Debug\vc.pdb" /Fo"test\UnitTest\x64\Debug\Intermediate\\"
 
