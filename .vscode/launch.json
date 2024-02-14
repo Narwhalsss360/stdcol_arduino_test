@@ -5,16 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "UnitTest",
+            "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}\\test\\UnitTest\\x64\\Debug\\UnitTest.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}\\test\\UnitTest",
+            "cwd": "${fileDirname}",
             "environment": [],
             "console": "integratedTerminal",
-            "preLaunchTask": "UnitTest | Build Win"
+            "preLaunchTask": "Build"
         }
     ]
 }
